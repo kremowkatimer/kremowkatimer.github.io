@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<meta charset='utf-8'>
+	<title>KremówkaTimer</title>
+	<script src="https://kit.fontawesome.com/647a9c32de.js" crossorigin="anonymous"></script>
+	<style>
+		html,body {
+			height: 100%;
+			color: white;
+			font-size: 32px;
+			font-family: 'Share Tech Mono', monospace;
+		}
+		body {
+			background: #0f3854;
+			background: radial-gradient(ellipse at center,  #0a2e38  0%, #000000 70%);
+			background-size: 100%;
+		}
+		p {
+			margin: 0;
+			padding: 20px;
+		}
+		a{
+			font-size:32px;
+			text-decoration:none;
+			color: red;
+			font-size: 48px;
+		}
+		#clock {
+			text-align: center;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			color: #daf6ff;
+			text-shadow: 0 0 20px rgba(10, 175, 230, 1),  0 0 20px rgba(10, 175, 230, 0);
+			
+		}
+		.text {
+				letter-spacing: 0.05em;
+				font-size: 80px;
+
+			}
+		i{
+			color:#6441a5;
+			text-shadow: none;
+		}	
+	
+	</style>
+</head>
+<body onload="kremowaTimer()">
+
+
+<div id="clock">
+	<p><a class="li" href="https://www.twitch.tv/ponurakremowka"> <i class="fa-brands fa-twitch"></i> PonuraKremowka <i class="fa-brands fa-twitch"></i></a></p>
+	<p>Od ostatniego streama minęło:</p>
+	<p class="text" id="time"></p>
+	<p>Był to jego <span class="text">2</span> powrót.</p>
+    
+</div>
+
+<script>
+function kremowaTimer() {
+	var date = new Date("09/04/2022 23:00:00");
+
+	var diff = Date.now() - date.getTime();
+
+	var msec = diff;
+	var dd = Math.floor(msec / 1000 / 60 / 60 / 24);
+		msec -= dd * 1000 * 60 * 60 * 24;
+	var hh = Math.floor(msec / 1000 / 60 / 60);
+		msec -= hh * 1000 * 60 * 60;
+	var mm = Math.floor(msec / 1000 / 60);
+		msec -= mm * 1000 * 60;
+	var ss = Math.floor(msec / 1000);
+		msec -= ss * 1000;
+	document.getElementById('time').innerHTML = (dd + " dni " + hh + "h " + mm + "m " + ss+ "s");
+
+	setTimeout(kremowaTimer, 1000);
+}
+</script>
+
+</body>
+</html>
