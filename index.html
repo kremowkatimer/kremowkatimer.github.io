@@ -40,6 +40,23 @@
 		i{
 			color:#6441a5;
 			text-shadow: none;
+		}
+		@keyframes colorRotate {
+		  from {
+			color: #6666ff;
+		  }
+		  10% {
+			color: #0099ff;
+		  }
+		  50% {
+			color: #00ff00;
+		  }
+		  75% {
+			color: #ff3399;
+		  }
+		  100% {
+			color: #6666ff;
+		  }
 		}	
 	
 	</style>
@@ -52,6 +69,7 @@
 	<p><a class="li" href="https://www.twitch.tv/ponurakremowka"> <i class="fa-brands fa-twitch"></i> PonuraKremowka <i class="fa-brands fa-twitch"></i></a></p>
 	<p>Od ostatniego streama minęło:</p>
 	<p class="text" id="time"></p>
+	<p id="addons"></p>
 	<p>Był to jego <span class="text">3</span> powrót.</p>
     
 </div>
@@ -61,6 +79,9 @@ function kremowaTimer() {
 	var date = new Date("09/04/2022 23:00:00");
 
 	var diff = Date.now() - date.getTime();
+	
+	var time = document.getElementById('time');
+	var addons = document.getElementById('addons');
 
 	var msec = diff;
 	var dd = Math.floor(msec / 1000 / 60 / 60 / 24);
@@ -71,7 +92,16 @@ function kremowaTimer() {
 		msec -= mm * 1000 * 60;
 	var ss = Math.floor(msec / 1000);
 		msec -= ss * 1000;
-	document.getElementById('time').innerHTML = (dd + " dni " + hh + "h " + mm + "m " + ss+ "s");
+	time.innerHTML = (dd + " dni " + hh + "h " + mm + "m " + ss+ "s");
+	
+	if(hh==21 && mm==37){
+		time.style.animation= 'colorRotate 1s linear 0s infinite';
+		addons.innerHTML = "<img height='200px' src='https://data4.cupsell.pl/upload/generator/247026/640x420/4465398_print_1.png?resize=max_sizes&key=55f9a22768eed085006592c1174c0235'>";
+	}
+	else{
+		time.style.animation= 'none';
+		addons.innerHTML = "";
+	}
 
 	setTimeout(kremowaTimer, 1000);
 }
