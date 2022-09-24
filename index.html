@@ -71,17 +71,20 @@
 	<p class="text" id="time"></p>
 	<p id="addons"></p>
 	<p>Był to jego <span class="text">3</span> powrót.</p>
-    
+    <audio id="audio">
+		<source src="audio.mp3" type="audio/mp3">
+	</audio>
 </div>
 
 <script>
 function kremowaTimer() {
-	var date = new Date("09/04/2022 23:00:00");
+	var date = new Date("09/04/2022 14:49:00");
 
 	var diff = Date.now() - date.getTime();
 	
 	var time = document.getElementById('time');
 	var addons = document.getElementById('addons');
+	var audio = document.getElementById('audio');
 
 	var msec = diff;
 	var dd = Math.floor(msec / 1000 / 60 / 60 / 24);
@@ -97,10 +100,12 @@ function kremowaTimer() {
 	if(hh==21 && mm==37){
 		time.style.animation= 'colorRotate 1s linear 0s infinite';
 		addons.innerHTML = "<img height='200px' src='https://data4.cupsell.pl/upload/generator/247026/640x420/4465398_print_1.png?resize=max_sizes&key=55f9a22768eed085006592c1174c0235'>";
+		audio.play();
 	}
 	else{
 		time.style.animation= 'none';
 		addons.innerHTML = "";
+		audio.pause();
 	}
 
 	setTimeout(kremowaTimer, 1000);
